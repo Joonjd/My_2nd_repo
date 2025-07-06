@@ -1,8 +1,10 @@
 import shutil
 du = shutil.disk_usage("/")
 used = (du.free/du.total)*100
-print(used)
-if used>80:
-    print("Free Disk Space")
-else:
-    print("Everything is fine")
+print(f'{used:.2f}')
+with open("log.txt", "a") as file:
+    if used>80:
+        file.write(f'{used:.2f}. ALERT!!!\n')
+    else:
+        file.write(f'{used:.2f}. FINE!\n')
+
